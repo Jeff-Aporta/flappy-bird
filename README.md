@@ -1,10 +1,23 @@
 # Flappy Bird v2
 
+![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![p5.js](https://img.shields.io/badge/p5.js-ED225D?style=for-the-badge)
+
 Recreación del clásico **Flappy Bird** desarrollada con **HTML**, **CSS**, **JavaScript** y **p5.js** como proyecto educativo. El juego vive en `src/` con arquitectura modular; la raíz del repo incluye además una landing de presentación que lo embebe por iframe.
 
 **Demo en vivo:** [https://jeff-aporta.github.io/flappy-bird/](https://jeff-aporta.github.io/flappy-bird/)
 
-**Código del tutorial (video):** [Flappy Bird en p5.js Web Editor](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx) — sketch original desarrollado paso a paso en el video.
+## Tutorial en video
+
+Proyecto basado en el siguiente tutorial de YouTube. Haz clic en la miniatura para ver el video completo:
+
+[![Tutorial Flappy Bird con p5.js](https://img.youtube.com/vi/MRk55wiOAMQ/hqdefault.jpg)](https://www.youtube.com/watch?v=MRk55wiOAMQ)
+
+**Ver en YouTube:** [https://www.youtube.com/watch?v=MRk55wiOAMQ](https://www.youtube.com/watch?v=MRk55wiOAMQ)
+
+**Código del tutorial (sketch p5.js):** [Flappy Bird en p5.js Web Editor](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx) — código desarrollado paso a paso en el video.
 
 > Este repositorio parte de ese mismo proyecto, pero aquí el código está **mucho más organizado, modular y depurado**: arquitectura por carpetas, separación de responsabilidades, assets renombrados, landing de presentación y listo para producción en GitHub Pages.
 
@@ -91,8 +104,9 @@ Luego abre `http://localhost:8080`.
 
 ## Origen del proyecto
 
-El juego se construyó siguiendo un tutorial práctico con p5.js. El código tal como aparece en el video está disponible en el editor oficial:
+El juego se construyó siguiendo el [tutorial en YouTube](https://www.youtube.com/watch?v=MRk55wiOAMQ). El código tal como aparece en el video está disponible en el editor oficial:
 
+- **Video del tutorial:** [https://www.youtube.com/watch?v=MRk55wiOAMQ](https://www.youtube.com/watch?v=MRk55wiOAMQ)
 - **Sketch del tutorial:** [https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx)
 
 Ese sketch es el punto de partida. En este repositorio de GitHub se tomó esa base y se elevó a **código de alta calidad** con HTML, CSS, JS y p5.js: módulos independientes (`entities/`, `geometry/`, `config/`), constantes centralizadas, assets estructurados y estilos separados.
@@ -108,7 +122,7 @@ Ese sketch es el punto de partida. En este repositorio de GitHub se tomó esa ba
 ## Créditos
 
 - Assets y concepto basados en el clásico Flappy Bird
-- Tutorial y sketch original en [p5.js Web Editor](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx)
+- Tutorial en [YouTube](https://www.youtube.com/watch?v=MRk55wiOAMQ) y sketch original en [p5.js Web Editor](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx)
 - Versión refactorizada y publicada por [Jeff-Aporta](https://github.com/Jeff-Aporta)
 
 ## Licencia
