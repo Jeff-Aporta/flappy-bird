@@ -17,12 +17,12 @@ const {
 const TUTORIAL_SKETCH_URL = 'https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx';
 const GITHUB_URL = 'https://github.com/Dev-InSoft-web/flappy-bird';
 
-const TECH_STACK = [
+/** Stack real del juego en src/index.html */
+const GAME_STACK = [
+  { label: 'HTML', icon: 'logos:html-5' },
+  { label: 'CSS', icon: 'mdi:language-css3' },
+  { label: 'JS', icon: 'mdi:language-javascript' },
   { label: 'p5.js', icon: 'mdi:draw' },
-  { label: 'JavaScript', icon: 'mdi:language-javascript' },
-  { label: 'React 18', icon: 'logos:react' },
-  { label: 'Material UI', icon: 'mdi:palette-outline' },
-  { label: 'HTML5 Canvas', icon: 'logos:html-5' },
 ];
 
 const FEATURES = [
@@ -173,8 +173,11 @@ function App() {
               ))}
             </Grid>
 
+            <Typography variant="overline" color="text.secondary" sx={{ display: 'block', mb: 1, letterSpacing: 1.2 }}>
+              Stack del juego · src/
+            </Typography>
             <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 3 }}>
-              {TECH_STACK.map((tech) => (
+              {GAME_STACK.map((tech) => (
                 <Chip
                   key={tech.label}
                   icon={<Icon icon={tech.icon} size={16} />}
