@@ -4,6 +4,10 @@ Recreación del clásico **Flappy Bird** desarrollada con **p5.js** como proyect
 
 **Demo en vivo:** [https://dev-insoft-web.github.io/flappy-bird/](https://dev-insoft-web.github.io/flappy-bird/)
 
+**Código del tutorial (video):** [Flappy Bird en p5.js Web Editor](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx) — sketch original desarrollado paso a paso en el video.
+
+> Este repositorio parte de ese mismo proyecto, pero aquí el código está **mucho más organizado, modular y depurado**: arquitectura por carpetas, separación de responsabilidades, assets renombrados, landing de presentación y listo para producción en GitHub Pages.
+
 ![Flappy Bird](src/assets/images/yellowbird-midflap.png)
 
 ## Características
@@ -79,11 +83,27 @@ npx serve .
 
 Luego abre `http://localhost:8080`.
 
+## Origen del proyecto
+
+El juego se construyó siguiendo un tutorial práctico con p5.js. El código tal como aparece en el video está disponible en el editor oficial:
+
+- **Sketch del tutorial:** [https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx)
+
+Ese sketch es el punto de partida. En este repositorio de GitHub se tomó esa base y se elevó a **código de alta calidad**: módulos independientes (`entities/`, `geometry/`, `config/`), constantes centralizadas, assets estructurados, estilos separados y una capa de presentación profesional con React y Material UI.
+
+| Aspecto | Sketch del video | Este repositorio |
+|---------|------------------|------------------|
+| Estructura | Archivos sueltos en un solo HTML | Carpetas `src/`, `presentation/`, `assets/` |
+| Colisiones | `rect&circle.js` monolítico | `geometry/Circle.js` + `Rectangle.js` |
+| Entidades | Funciones inline en `index.html` | `Bird.js`, `Pipe.js`, `Floor.js` |
+| Deploy | Solo editor p5.js | GitHub Pages + landing con iframe |
+| Mantenibilidad | Prototipo educativo | Código modular listo para escalar |
+
 ## Créditos
 
 - Assets y concepto basados en el clásico Flappy Bird
-- Proyecto creado siguiendo un tutorial práctico de desarrollo con p5.js
-- Desarrollado por [Dev-InSoft-web](https://github.com/Dev-InSoft-web)
+- Tutorial y sketch original en [p5.js Web Editor](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx)
+- Versión refactorizada y publicada por [Dev-InSoft-web](https://github.com/Dev-InSoft-web)
 
 ## Licencia
 

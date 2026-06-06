@@ -7,6 +7,7 @@ const {
   Stack,
   Card,
   CardContent,
+  Alert,
   AppBar,
   Toolbar,
   IconButton,
@@ -14,6 +15,7 @@ const {
   Grid,
 } = MaterialUI;
 
+const TUTORIAL_SKETCH_URL = 'https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx';
 const TECH_STACK = ['p5.js', 'JavaScript', 'React 18', 'Material UI', 'HTML5 Canvas'];
 const FEATURES = [
   {
@@ -42,6 +44,9 @@ function App() {
           <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 700, letterSpacing: 0.5 }}>
             Flappy Bird
           </Typography>
+          <Button color="inherit" href={TUTORIAL_SKETCH_URL} target="_blank" rel="noopener noreferrer">
+            Código del video
+          </Button>
           <Button color="inherit" href="https://github.com/Dev-InSoft-web/flappy-bird" target="_blank" rel="noopener noreferrer">
             GitHub
           </Button>
@@ -61,8 +66,43 @@ function App() {
             </Typography>
             <Typography variant="h6" color="text.secondary" paragraph sx={{ lineHeight: 1.7 }}>
               Recreación del clásico arcade desarrollada con p5.js durante un tutorial práctico.
-              Incluye motor de colisiones propio, animaciones por sprites y diseño modular.
+              El código del video está en el{' '}
+              <Box
+                component="a"
+                href={TUTORIAL_SKETCH_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ color: 'success.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+              >
+                editor p5.js
+              </Box>
+              ; este repositorio es la misma base, pero organizada, depurada y lista para producción.
             </Typography>
+            <Alert
+              severity="info"
+              sx={{
+                mb: 3,
+                bgcolor: 'rgba(74, 222, 128, 0.08)',
+                border: '1px solid rgba(74, 222, 128, 0.2)',
+                color: 'text.secondary',
+                '& .MuiAlert-icon': { color: 'success.main' },
+              }}
+            >
+              <Typography variant="body2">
+                <strong>Código del tutorial:</strong>{' '}
+                <Box
+                  component="a"
+                  href={TUTORIAL_SKETCH_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ color: 'success.main' }}
+                >
+                  ver sketch en p5.js Web Editor
+                </Box>
+                . Aquí encontrarás la versión refactorizada con arquitectura modular, assets estructurados
+                y calidad de código pensada para mantener y escalar el proyecto.
+              </Typography>
+            </Alert>
             <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 3 }}>
               {TECH_STACK.map((tech) => (
                 <Chip key={tech} label={tech} variant="outlined" size="small" />
@@ -148,11 +188,18 @@ function App() {
           <Typography variant="body2" color="text.secondary">
             © {new Date().getFullYear()} Dev-InSoft-web · Proyecto de aprendizaje con p5.js
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            <a className="footer-link" href="https://github.com/Dev-InSoft-web/flappy-bird" target="_blank" rel="noopener noreferrer">
-              Ver código fuente en GitHub
-            </a>
-          </Typography>
+          <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
+            <Typography variant="body2" color="text.secondary">
+              <a className="footer-link" href={TUTORIAL_SKETCH_URL} target="_blank" rel="noopener noreferrer">
+                Sketch del tutorial
+              </a>
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              <a className="footer-link" href="https://github.com/Dev-InSoft-web/flappy-bird" target="_blank" rel="noopener noreferrer">
+                Código refactorizado en GitHub
+              </a>
+            </Typography>
+          </Stack>
         </Stack>
       </Container>
     </Box>
