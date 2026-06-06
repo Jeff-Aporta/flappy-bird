@@ -69,6 +69,74 @@ body {
   text-decoration: underline;
 }
 
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.local-iconify {
+  flex-shrink: 0;
+}
+
+.floating-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.float-icon {
+  position: absolute;
+  opacity: 0.12;
+  color: var(--accent);
+}
+
+.float-1 { top: 12%; left: 8%; }
+.float-2 { top: 22%; right: 12%; }
+.float-3 { top: 48%; left: 4%; }
+.float-4 { bottom: 28%; right: 8%; }
+.float-5 { bottom: 14%; left: 18%; }
+
+.game-frame-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(10, 14, 23, 0.82);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.quality-point {
+  padding: 6px 0;
+}
+
+.feature-icon-wrap {
+  transition: transform 0.2s ease;
+}
+
+.feature-card:hover .feature-icon-wrap {
+  transform: scale(1.08);
+}
+
+.MuiChip-icon {
+  margin-left: 8px !important;
+  margin-right: -2px !important;
+}
+
+.MuiButton-startIcon .local-iconify {
+  margin-right: 0;
+}
+
 @media (max-width: 900px) {
   .game-frame-wrapper iframe {
     height: 56vw;

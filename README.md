@@ -26,6 +26,9 @@ flappy-bird/
 ├── index.html              # Landing de presentación (React + MUI)
 ├── presentation/
 │   ├── App.jsx             # Componente principal de la landing
+│   ├── Icon.jsx            # Componente de iconos offline
+│   ├── iconRegistry.js     # SVG embebidos (Iconify descargados)
+│   ├── icons/              # SVG locales de respaldo
 │   └── styles.css          # Estilos de la presentación
 ├── src/                    # Juego (p5.js)
 │   ├── index.html          # Entry point del juego
