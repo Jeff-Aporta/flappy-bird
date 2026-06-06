@@ -16,6 +16,11 @@ const {
 
 const TUTORIAL_SKETCH_URL = 'https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx';
 const GITHUB_URL = 'https://github.com/Jeff-Aporta/flappy-bird';
+const DEMO_URL = 'https://jeff-aporta.github.io/flappy-bird/';
+const TUTORIAL_VIDEO_URL = 'https://www.youtube.com/watch?v=MRk55wiOAMQ';
+const TUTORIAL_VIDEO_EMBED = 'https://www.youtube.com/embed/MRk55wiOAMQ';
+const LEGACY_VIDEO_URL = 'https://youtu.be/nfNe-SPlumY';
+const LEGACY_VIDEO_EMBED = 'https://www.youtube.com/embed/nfNe-SPlumY';
 
 /** Stack real del juego en src/index.html */
 const GAME_STACK = [
@@ -118,7 +123,6 @@ function App() {
               <Icon icon="mdi:controller-classic" size={40} color="#4ade80" />
               <Typography variant="h2" component="h1" sx={{ fontWeight: 800, fontSize: { xs: '2.2rem', md: '3rem' } }}>
                 Flappy Bird
-                <Box component="span" sx={{ color: 'success.main' }}> v2</Box>
               </Typography>
             </Stack>
             <Typography variant="h6" color="text.secondary" paragraph sx={{ lineHeight: 1.7 }}>
@@ -212,39 +216,30 @@ function App() {
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Box className="game-frame-wrapper">
+            <Box className="video-frame-wrapper">
               <Box className="game-frame-badge">
-                <Icon icon="mdi:gamepad-variant" size={16} color="#4ade80" />
-                <span>Live preview</span>
+                <Icon icon="mdi:play-circle" size={16} color="#4ade80" />
+                <span>Tutorial en video</span>
               </Box>
               <iframe
-                title="Flappy Bird Game"
-                src="src/index.html"
-                allow="autoplay"
+                title="Tutorial Flappy Bird con p5.js"
+                src={`${TUTORIAL_VIDEO_EMBED}?rel=0`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
                 loading="lazy"
               />
             </Box>
-            <Stack
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-              flexWrap="wrap"
-              useFlexGap
-              sx={{ mt: 1.5 }}
-            >
-              <Typography variant="caption" color="text.secondary" sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5 }}>
-                <Icon icon="mdi:gesture-tap" size={14} color="#94a3b8" />
-                Clic para volar
-              </Typography>
-              <Typography variant="caption" color="text.secondary" sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5 }}>
-                <Icon icon="mdi:keyboard-space" size={14} color="#94a3b8" />
-                Barra espaciadora
-              </Typography>
-              <Typography variant="caption" color="text.secondary" sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5 }}>
-                <Icon icon="mdi:restore" size={14} color="#94a3b8" />
-                Reiniciar tras perder
-              </Typography>
-            </Stack>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1.5, textAlign: 'center' }}>
+              <Box
+                component="a"
+                href={TUTORIAL_VIDEO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ color: 'success.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+              >
+                Ver en YouTube
+              </Box>
+            </Typography>
           </Grid>
         </Grid>
       </Container>
@@ -289,6 +284,58 @@ function App() {
         </Grid>
       </Container>
 
+      <Box sx={{ bgcolor: 'rgba(0,0,0,0.2)', py: 8, position: 'relative', zIndex: 1 }}>
+        <Container maxWidth="lg">
+          <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
+            <Icon icon="mdi:school-outline" size={28} color="#4ade80" />
+            <Typography variant="h5" sx={{ fontWeight: 700 }}>
+              Video completo (versión anterior)
+            </Typography>
+          </Stack>
+          <Typography variant="body1" color="text.secondary" paragraph sx={{ maxWidth: 820 }}>
+            También existe un segundo tutorial grabado hace 5 años: cubre el mismo proyecto de forma más extensa,
+            aproximadamente <strong>3 veces más largo</strong> que el video principal. Ideal si quieres profundizar
+            con más detalle paso a paso.
+          </Typography>
+          <Grid container spacing={4} alignItems="center">
+            <Grid item xs={12} md={7}>
+              <Box className="video-frame-wrapper video-frame-wrapper--compact">
+                <Box className="game-frame-badge">
+                  <Icon icon="mdi:open-in-new" size={16} color="#4ade80" />
+                  <span>Tutorial extendido · 2019</span>
+                </Box>
+                <iframe
+                  title="Tutorial Flappy Bird extendido"
+                  src={`${LEGACY_VIDEO_EMBED}?rel=0`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <Stack spacing={2}>
+                <Typography variant="body2" color="text.secondary">
+                  Mismo juego, más minutos de explicación, ritmo más pausado y contexto adicional para quienes
+                  prefieren un recorrido largo por el código.
+                </Typography>
+                <Button
+                  variant="outlined"
+                  color="success"
+                  href={LEGACY_VIDEO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  startIcon={<Icon icon="mdi:play-circle" size={20} />}
+                  sx={{ alignSelf: 'flex-start' }}
+                >
+                  Ver video completo en YouTube
+                </Button>
+              </Stack>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
       <Box id="play-section" sx={{ bgcolor: 'rgba(0,0,0,0.35)', py: 8, position: 'relative', zIndex: 1 }}>
         <Container maxWidth="lg">
           <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 1 }}>
@@ -300,9 +347,34 @@ function App() {
           <Typography variant="body1" align="center" color="text.secondary" paragraph>
             <Icon icon="mdi:web" size={18} color="#94a3b8" /> El juego corre en un iframe aislado. Haz clic dentro del canvas para interactuar.
           </Typography>
+          <Stack
+            direction="row"
+            spacing={2}
+            justifyContent="center"
+            flexWrap="wrap"
+            useFlexGap
+            sx={{ mb: 2 }}
+          >
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5 }}>
+              <Icon icon="mdi:gesture-tap" size={14} color="#94a3b8" />
+              Clic para volar
+            </Typography>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5 }}>
+              <Icon icon="mdi:keyboard-space" size={14} color="#94a3b8" />
+              Barra espaciadora
+            </Typography>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5 }}>
+              <Icon icon="mdi:restore" size={14} color="#94a3b8" />
+              Reiniciar tras perder
+            </Typography>
+          </Stack>
           <Box className="game-frame-wrapper" sx={{ maxWidth: 1280, mx: 'auto' }}>
+            <Box className="game-frame-badge">
+              <Icon icon="mdi:gamepad-variant" size={16} color="#4ade80" />
+              <span>Juego en vivo</span>
+            </Box>
             <iframe
-              title="Flappy Bird Full Game"
+              title="Flappy Bird"
               src="src/index.html"
               allow="autoplay"
             />

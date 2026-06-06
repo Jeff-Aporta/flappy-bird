@@ -1,4 +1,4 @@
-# Flappy Bird v2
+# Flappy Bird
 
 ![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
@@ -18,6 +18,8 @@ Proyecto basado en el siguiente tutorial de YouTube. Haz clic en la miniatura pa
 **Ver en YouTube:** [https://www.youtube.com/watch?v=MRk55wiOAMQ](https://www.youtube.com/watch?v=MRk55wiOAMQ)
 
 **Código del tutorial (sketch p5.js):** [Flappy Bird en p5.js Web Editor](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx) — código desarrollado paso a paso en el video.
+
+**Tutorial extendido (hace 5 años, ~3× más largo):** [https://youtu.be/nfNe-SPlumY](https://youtu.be/nfNe-SPlumY)
 
 > Este repositorio parte de ese mismo proyecto, pero aquí el código está **mucho más organizado, modular y depurado**: arquitectura por carpetas, separación de responsabilidades, assets renombrados, landing de presentación y listo para producción en GitHub Pages.
 
