@@ -2,7 +2,7 @@
 
 Recreación del clásico **Flappy Bird** desarrollada con **p5.js** como proyecto educativo. Incluye una landing page profesional con **React 18** y **Material UI**, y el juego embebido mediante iframe.
 
-**Demo en vivo:** [https://dev-insoft-web.github.io/flappy-bird/](https://dev-insoft-web.github.io/flappy-bird/)
+**Demo en vivo:** [https://jeff-aporta.github.io/flappy-bird/](https://jeff-aporta.github.io/flappy-bird/)
 
 **Código del tutorial (video):** [Flappy Bird en p5.js Web Editor](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx) — sketch original desarrollado paso a paso en el video.
 
@@ -106,7 +106,7 @@ Ese sketch es el punto de partida. En este repositorio de GitHub se tomó esa ba
 
 - Assets y concepto basados en el clásico Flappy Bird
 - Tutorial y sketch original en [p5.js Web Editor](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx)
-- Versión refactorizada y publicada por [Dev-InSoft-web](https://github.com/Dev-InSoft-web)
+- Versión refactorizada y publicada por [Jeff-Aporta](https://github.com/Jeff-Aporta)
 
 ## Licencia
 

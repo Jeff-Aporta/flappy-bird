@@ -15,7 +15,7 @@ const {
 } = MaterialUI;
 
 const TUTORIAL_SKETCH_URL = 'https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx';
-const GITHUB_URL = 'https://github.com/Dev-InSoft-web/flappy-bird';
+const GITHUB_URL = 'https://github.com/Jeff-Aporta/flappy-bird';
 
 /** Stack real del juego en src/index.html */
 const GAME_STACK = [
@@ -317,7 +317,7 @@ function App() {
           <Stack direction="row" alignItems="center" spacing={1}>
             <Icon icon="mdi:source-branch" size={18} color="#4ade80" />
             <Typography variant="body2" color="text.secondary">
-              © {new Date().getFullYear()} Dev-InSoft-web · Proyecto de aprendizaje con p5.js
+              © {new Date().getFullYear()} Jeff-Aporta · Proyecto de aprendizaje con p5.js
             </Typography>
           </Stack>
           <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
