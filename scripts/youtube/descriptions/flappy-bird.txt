@@ -1,0 +1,30 @@
+🎮 Flappy Bird con p5.js — Tutorial práctico
+
+En este video construimos el clásico Flappy Bird paso a paso con HTML, CSS, JavaScript y p5.js.
+
+🔗 ENLACES DEL PROYECTO
+
+▶ Jugar en línea (demo):
+https://jeff-aporta.github.io/flappy-bird/
+
+▶ Código refactorizado en GitHub:
+https://github.com/Jeff-Aporta/flappy-bird
+
+▶ Sketch del tutorial en p5.js Web Editor:
+https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx
+
+▶ Tutorial extendido (versión anterior, ~3× más largo, hace 5 años):
+https://youtu.be/nfNe-SPlumY
+
+📬 CONTACTO
+
+WhatsApp:
+https://wa.link/1tmqmt
+
+Telegram:
+https://t.me/jeffAporta
+
+🛠️ TECNOLOGÍAS DEL JUEGO
+HTML · CSS · JavaScript · p5.js
+
+#FlappyBird #p5js #JavaScript #Programación #Tutorial #JeffAporta
