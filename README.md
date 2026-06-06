@@ -1,6 +1,6 @@
 # Flappy Bird v2
 
-Recreación del clásico **Flappy Bird** desarrollada con **p5.js** como proyecto educativo. Incluye una landing page profesional con **React 18** y **Material UI**, y el juego embebido mediante iframe.
+Recreación del clásico **Flappy Bird** desarrollada con **HTML**, **CSS**, **JavaScript** y **p5.js** como proyecto educativo. El juego vive en `src/` con arquitectura modular; la raíz del repo incluye además una landing de presentación que lo embebe por iframe.
 
 **Demo en vivo:** [https://jeff-aporta.github.io/flappy-bird/](https://jeff-aporta.github.io/flappy-bird/)
 
@@ -16,8 +16,7 @@ Recreación del clásico **Flappy Bird** desarrollada con **p5.js** como proyect
 - Sistema de colisiones círculo-rectángulo personalizado
 - Física de vuelo con gravedad y rotación dinámica
 - Sprites animados, sonidos y tipografía original
-- Landing page responsive con React + MUI
-- Arquitectura modular y lista para GitHub Pages
+- Arquitectura modular en `src/` lista para mantener y escalar
 
 ## Estructura del proyecto
 
@@ -63,14 +62,18 @@ flappy-bird/
 
 También puedes abrir el juego directamente en `src/index.html`.
 
-## Stack tecnológico
+## Stack tecnológico del juego (`src/`)
 
-| Capa | Tecnología |
-|------|------------|
-| Juego | p5.js, JavaScript vanilla |
-| Presentación | React 18, Material UI 5 |
-| Estilos | CSS modular |
-| Deploy | GitHub Pages (rama `main`) |
+Tecnologías usadas en `src/index.html`, tal como aparecen en el código del juego:
+
+| Tecnología | Uso en el proyecto |
+|------------|-------------------|
+| **HTML** | Estructura y carga de scripts en `src/index.html` |
+| **CSS** | Estilos del canvas y layout en `src/css/game.css` |
+| **JavaScript** | Lógica modular en `src/js/` (`config/`, `core/`, `entities/`, `geometry/`) |
+| **p5.js** | Motor de renderizado, física y manejo del canvas |
+
+> La landing de presentación en la raíz (`index.html`) usa React y Material UI solo como capa de portfolio; **el juego en sí no depende de ellas**.
 
 ## Desarrollo local
 
@@ -92,7 +95,7 @@ El juego se construyó siguiendo un tutorial práctico con p5.js. El código tal
 
 - **Sketch del tutorial:** [https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx](https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx)
 
-Ese sketch es el punto de partida. En este repositorio de GitHub se tomó esa base y se elevó a **código de alta calidad**: módulos independientes (`entities/`, `geometry/`, `config/`), constantes centralizadas, assets estructurados, estilos separados y una capa de presentación profesional con React y Material UI.
+Ese sketch es el punto de partida. En este repositorio de GitHub se tomó esa base y se elevó a **código de alta calidad** con HTML, CSS, JS y p5.js: módulos independientes (`entities/`, `geometry/`, `config/`), constantes centralizadas, assets estructurados y estilos separados.
 
 | Aspecto | Sketch del video | Este repositorio |
 |---------|------------------|------------------|
