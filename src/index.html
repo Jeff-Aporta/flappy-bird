@@ -8,9 +8,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.min.js"></script>
 </head>
 <body>
+  <!-- Producción: CDN jsDelivr tras publicar jeff-geometry en GitHub -->
+  <script src="js/vendor/jeff-geometry.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/gh/Jeff-Aporta/jeff-geometry@1.0.0/dist/jeff-geometry.js"></script> -->
+  <script>
+    window.Circle = JeffGeometry.Circle;
+    window.Rectangle = JeffGeometry.Rectangle;
+  </script>
   <script src="js/config/constants.js"></script>
-  <script src="js/geometry/Circle.js"></script>
-  <script src="js/geometry/Rectangle.js"></script>
   <script src="js/entities/Pipe.js"></script>
   <script src="js/entities/Bird.js"></script>
   <script src="js/entities/Floor.js"></script>

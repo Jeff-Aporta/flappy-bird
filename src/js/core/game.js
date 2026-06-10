@@ -1,124 +1,117 @@
-/**
- * Lógica principal del juego Flappy Bird (p5.js).
- */
+/** p5.js lifecycle — orchestrates state, entities and input. */
 
-const ancho_escenario = CONFIG.ANCHO_ESCENARIO;
-const alto_escenario = CONFIG.ALTO_ESCENARIO;
-const velocidad_suelo = CONFIG.VELOCIDAD_SUELO;
+const state = {
+  playing: false,
+  score: 0,
+  ticks: 0,
+  pipes: [],
+  wingClicks: 0,
+};
+
+const assets = {};
 
 let canvas;
-let piso;
-let pajaro;
-let tubos = [];
-let caer = false;
-let puntos = 0;
-let contadorFotogramas = 0;
-let contador_clics = 0;
-
-let font;
-let audio_hit;
-let audio_point;
-let audio_wing;
-let img_piso;
-let img_fondo;
-let img_tubo;
-let img_pajaro;
+let floor;
+let bird;
 
 function preload() {
   const { ASSETS } = CONFIG;
-  font = loadFont(ASSETS.font);
-  img_piso = loadImage(ASSETS.floor);
-  img_tubo = loadImage(ASSETS.pipe);
-  img_fondo = loadImage(ASSETS.background);
-  img_pajaro = ASSETS.bird.map((path) => loadImage(path));
-
-  audio_hit = new Audio(ASSETS.audio.hit);
-  audio_point = new Audio(ASSETS.audio.point);
-  audio_wing = {
-    0: new Audio(ASSETS.audio.wing),
-    1: new Audio(ASSETS.audio.wing),
-    2: new Audio(ASSETS.audio.wing),
+  assets.font = loadFont(ASSETS.font);
+  assets.floor = loadImage(ASSETS.floor);
+  assets.pipe = loadImage(ASSETS.pipe);
+  assets.background = loadImage(ASSETS.background);
+  assets.bird = ASSETS.bird.map((path) => loadImage(path));
+  assets.sounds = {
+    hit: new Audio(ASSETS.audio.hit),
+    point: new Audio(ASSETS.audio.point),
+    wing: [0, 1, 2].map(() => new Audio(ASSETS.audio.wing)),
   };
 }
 
 function setup() {
-  canvas = createCanvas(ancho_escenario, alto_escenario);
-  textFont(font);
+  canvas = createCanvas(CONFIG.CANVAS_WIDTH, CONFIG.CANVAS_HEIGHT);
+  textFont(assets.font);
   textSize(40);
   textAlign(CENTER, CENTER);
   strokeWeight(10);
-  windowResized();
-  piso = new Piso();
-  pajaro = new Pajaro();
-  img_fondo.resize(
-    img_fondo.width * alto_escenario / img_fondo.height,
-    alto_escenario
+  fitCanvasToWindow();
+  assets.background.resize(
+    assets.background.width * CONFIG.CANVAS_HEIGHT / assets.background.height,
+    CONFIG.CANVAS_HEIGHT
   );
+  floor = new Floor();
+  bird = new Bird();
 }
 
 function draw() {
-  for (let i = 0; i < 4; i++) {
-    image(img_fondo, img_fondo.width * i, 0);
+  _drawBackground();
+  for (const pipe of state.pipes) pipe.render();
+  floor.render();
+  bird.render();
+
+  if (state.playing && state.ticks % CONFIG.SPAWN_INTERVAL === 0) {
+    state.pipes.push(new Pipe());
   }
-
-  for (const tubo of tubos) {
-    tubo.dibujar();
-  }
-
-  piso.dibujar();
-  pajaro.dibujar();
-
-  if (contadorFotogramas * velocidad_suelo % CONFIG.SPAWNING_INTERVAL === 0) {
-    tubos.push(new Tubo());
-  }
-
-  if (caer) {
-    contadorFotogramas++;
-  }
-
-  if (tubos[puntos] && tubos[puntos].x - pajaro.pos.x < 0) {
-    puntos++;
-    audio_point.play();
+  if (state.playing) {
+    state.ticks++;
+    _updateScore();
   }
 
   stroke('black');
   fill('white');
-  text(puntos, width / 2, 40);
+  text(state.score, width / 2, 40);
+}
+
+function _drawBackground() {
+  const tileW = assets.background.width;
+  for (let i = 0; i < 4; i++) {
+    image(assets.background, tileW * i, 0);
+  }
+}
+
+function _updateScore() {
+  const next = state.pipes[state.score];
+  if (next && next.x < bird.pos.x) {
+    state.score++;
+    assets.sounds.point.play();
+  }
 }
 
 function windowResized() {
-  if (width < windowWidth) {
-    return;
-  }
-  const escala = windowWidth / width;
-  canvas.style('width', `${width * escala}px`);
-  canvas.style('height', `${height * escala}px`);
+  fitCanvasToWindow();
+}
+
+function fitCanvasToWindow() {
+  if (width >= windowWidth) return;
+  const scale = windowWidth / width;
+  canvas.style('width', `${width * scale}px`);
+  canvas.style('height', `${height * scale}px`);
 }
 
 function keyPressed() {
-  clic();
+  handleInput();
 }
 
 function mouseReleased() {
-  clic();
+  handleInput();
 }
 
-function clic() {
-  if (caer) {
-    pajaro.aceleracion.set(createVector(0, -5));
-    audio_wing[contador_clics++ % 3].play();
-  } else {
-    pajaro.resetearVariables();
-    caer = true;
-    contadorFotogramas = 0;
-    puntos = 0;
-    tubos = [];
+function handleInput() {
+  if (state.playing) {
+    bird.flap();
+    assets.sounds.wing[state.wingClicks++ % 3].play();
+    return;
   }
+  bird.reset();
+  state.playing = true;
+  state.ticks = 0;
+  state.score = 0;
+  state.pipes = [];
 }
 
-function perder() {
-  if (caer) {
-    audio_hit.play();
+function endGame() {
+  if (state.playing) {
+    assets.sounds.hit.play();
   }
-  caer = false;
+  state.playing = false;
 }

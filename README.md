@@ -21,7 +21,7 @@ Proyecto basado en el siguiente tutorial de YouTube. Haz clic en la miniatura pa
 
 **Tutorial extendido (hace 5 años, ~3× más largo):** [https://youtu.be/nfNe-SPlumY](https://youtu.be/nfNe-SPlumY)
 
-> Este repositorio parte de ese mismo proyecto, pero aquí el código está **mucho más organizado, modular y depurado**: arquitectura por carpetas, separación de responsabilidades, assets renombrados, landing de presentación y listo para producción en GitHub Pages.
+> Este repositorio parte de ese mismo proyecto, pero aquí el código está **refactorizado con buenas prácticas**: nomenclatura consistente en inglés, clases ES6, geometría mínima sin boilerplate, objetos `state` y `assets`, landing en GitHub Pages con descarga ZIP y juego embebido.
 
 ![Flappy Bird](src/assets/images/yellowbird-midflap.png)
 
@@ -31,7 +31,7 @@ Proyecto basado en el siguiente tutorial de YouTube. Haz clic en la miniatura pa
 - Sistema de colisiones círculo-rectángulo personalizado
 - Física de vuelo con gravedad y rotación dinámica
 - Sprites animados, sonidos y tipografía original
-- Arquitectura modular en `src/` lista para mantener y escalar
+- Arquitectura modular en `src/` — nomenclatura en inglés, clases ES6, `state` + `assets` centralizados
 
 ## Estructura del proyecto
 

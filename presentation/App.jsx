@@ -15,12 +15,56 @@ const {
 } = MaterialUI;
 
 const TUTORIAL_SKETCH_URL = 'https://editor.p5js.org/Jeff-Aporta/sketches/1MwUdFHrx';
+const GEOMETRY_URL = 'https://jeff-aporta.github.io/jeff-geometry/';
+const GEOMETRY_GITHUB = 'https://github.com/Jeff-Aporta/jeff-geometry';
 const GITHUB_URL = 'https://github.com/Jeff-Aporta/flappy-bird';
+const DOWNLOAD_ZIP_URL = 'https://github.com/Jeff-Aporta/flappy-bird/archive/refs/heads/main.zip';
 const DEMO_URL = 'https://jeff-aporta.github.io/flappy-bird/';
+/** Cambiar a true cuando el tutorial editado esté publicado y embeddable en YouTube */
+const TUTORIAL_VIDEO_READY = false;
 const TUTORIAL_VIDEO_URL = 'https://www.youtube.com/watch?v=MRk55wiOAMQ';
 const TUTORIAL_VIDEO_EMBED = 'https://www.youtube.com/embed/MRk55wiOAMQ';
+const TUTORIAL_THUMB = 'presentation/assets/tutorial-thumb.jpg';
 const LEGACY_VIDEO_URL = 'https://youtu.be/nfNe-SPlumY';
 const LEGACY_VIDEO_EMBED = 'https://www.youtube.com/embed/nfNe-SPlumY';
+
+function TutorialVideoPlayer() {
+  if (TUTORIAL_VIDEO_READY) {
+    return (
+      <iframe
+        title="Tutorial Flappy Bird con p5.js"
+        src={`${TUTORIAL_VIDEO_EMBED}?rel=0`}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        loading="lazy"
+      />
+    );
+  }
+
+  return (
+    <Box className="video-placeholder" role="img" aria-label="Miniatura del tutorial — video próximamente en YouTube">
+      <img className="video-placeholder__thumb" src={TUTORIAL_THUMB} alt="" />
+      <Box className="video-placeholder__shade" aria-hidden="true" />
+      <Box className="video-placeholder__controls" aria-hidden="true">
+        <Box className="video-placeholder__play">
+          <Icon icon="mdi:play-circle" size={34} color="#ffffff" />
+        </Box>
+        <Box className="video-placeholder__bar">
+          <span className="video-placeholder__progress" />
+        </Box>
+        <Typography component="span" className="video-placeholder__time">
+          0:00 / --:--
+        </Typography>
+      </Box>
+      <Chip
+        className="video-placeholder__badge"
+        size="small"
+        label="Próximamente en YouTube"
+        icon={<Icon icon="mdi:information-outline" size={14} color="#94a3b8" />}
+      />
+    </Box>
+  );
+}
 
 /** Stack real del juego en src/index.html */
 const GAME_STACK = [
@@ -39,7 +83,9 @@ const FEATURES = [
   {
     title: 'Colisiones precisas',
     icon: 'mdi:vector-intersection',
-    description: 'Sistema de detección círculo-rectángulo con geometría custom para tubos y suelo.',
+    description: 'Hitboxes con Jeff Geometry (Circle + Rectangle vía CDN): colisión círculo–rectángulo, punto en AABB y tubos.',
+    link: GEOMETRY_URL,
+    linkLabel: 'Ver librería Jeff Geometry',
   },
   {
     title: 'Assets originales',
@@ -86,6 +132,16 @@ function App() {
             startIcon={<Icon icon="mdi:open-in-new" size={18} />}
           >
             Código del video
+          </Button>
+          <Button
+            color="inherit"
+            href={GEOMETRY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            startIcon={<Icon icon="mdi:vector-intersection" size={18} />}
+            sx={{ ml: 1 }}
+          >
+            Jeff Geometry
           </Button>
           <Button
             color="inherit"
@@ -212,6 +268,17 @@ function App() {
               >
                 Abrir en pestaña nueva
               </Button>
+              <Button
+                variant="outlined"
+                color="success"
+                size="large"
+                href={DOWNLOAD_ZIP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<Icon icon="mdi:download" size={20} />}
+              >
+                Descargar código
+              </Button>
             </Stack>
           </Grid>
 
@@ -221,24 +288,22 @@ function App() {
                 <Icon icon="mdi:play-circle" size={16} color="#4ade80" />
                 <span>Tutorial en video</span>
               </Box>
-              <iframe
-                title="Tutorial Flappy Bird con p5.js"
-                src={`${TUTORIAL_VIDEO_EMBED}?rel=0`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-              />
+              <TutorialVideoPlayer />
             </Box>
             <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1.5, textAlign: 'center' }}>
-              <Box
-                component="a"
-                href={TUTORIAL_VIDEO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ color: 'success.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
-              >
-                Ver en YouTube
-              </Box>
+              {TUTORIAL_VIDEO_READY ? (
+                <Box
+                  component="a"
+                  href={TUTORIAL_VIDEO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ color: 'success.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+                >
+                  Ver en YouTube
+                </Box>
+              ) : (
+                'El tutorial editado se publicará pronto en el canal Jeff Aporta'
+              )}
             </Typography>
           </Grid>
         </Grid>
@@ -277,6 +342,18 @@ function App() {
                   <Typography variant="body2" color="text.secondary">
                     {feature.description}
                   </Typography>
+                  {feature.link && (
+                    <Button
+                      size="small"
+                      href={feature.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      endIcon={<Icon icon="mdi:open-in-new" size={14} />}
+                      sx={{ mt: 1.5, px: 0, textTransform: 'none' }}
+                    >
+                      {feature.linkLabel || 'Más info'}
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             </Grid>
@@ -400,7 +477,12 @@ function App() {
             </Typography>
             <Typography variant="body2" color="text.secondary">
               <a className="footer-link" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                <IconLabel icon="mdi:github" label="Código refactorizado en GitHub" size={14} color="#4ade80" />
+                <IconLabel icon="mdi:github" label="Repositorio en GitHub" size={14} color="#4ade80" />
+              </a>
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              <a className="footer-link" href={DOWNLOAD_ZIP_URL} target="_blank" rel="noopener noreferrer">
+                <IconLabel icon="mdi:download" label="Descargar ZIP" size={14} color="#4ade80" />
               </a>
             </Typography>
           </Stack>

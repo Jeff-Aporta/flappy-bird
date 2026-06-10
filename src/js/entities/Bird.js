@@ -1,49 +1,56 @@
-/**
- * Pájaro controlado por el jugador con física básica y animación por frames.
- */
-function Pajaro() {
-  this.r = 60;
-
-  this.resetearVariables = function () {
-    this.pos = createVector(width / 2, height / 2);
-    this.aceleracion = createVector(0, 0);
-  };
-
-  this.resetearVariables();
-
-  for (const img of img_pajaro) {
-    img.resize(this.r, img.height * this.r / img.width);
+/** Player bird: physics, wing animation, collision checks. */
+class Bird {
+  constructor() {
+    this.radius = CONFIG.BIRD_RADIUS;
+    this.reset();
+    for (const img of assets.bird) {
+      img.resize(this.radius, img.height * this.radius / img.width);
+    }
   }
 
-  this.dibujar = function () {
+  reset() {
+    this.pos = createVector(width / 2, height / 2);
+    this.vel = createVector(0, 0);
+  }
+
+  render() {
     push();
     translate(this.pos.x, this.pos.y);
-    rotate(this.aceleracion.copy().add(5, 0).heading());
-    const i = Math.floor(contadorFotogramas / velocidad_suelo) % img_pajaro.length;
-    const img = img_pajaro[i];
-    image(img, -img.width / 2, -img.height / 2);
+    rotate(this.vel.copy().add(5, 0).heading());
+    const frame = Math.floor(state.ticks / CONFIG.SCROLL_SPEED) % assets.bird.length;
+    const sprite = assets.bird[frame];
+    image(sprite, -sprite.width / 2, -sprite.height / 2);
     pop();
 
-    if (caer) {
-      this.aceleracion.add(createVector(0, 0.2));
-      this.pos.add(this.aceleracion);
+    if (state.playing) {
+      this.vel.add(0, CONFIG.GRAVITY);
+      this.pos.add(this.vel);
+      this._checkCollisions();
     }
+  }
 
-    if (this.areaColision().collideRect(piso.areaColision())) {
-      perder();
+  flap() {
+    this.vel.set(0, CONFIG.FLAP_FORCE);
+  }
+
+  getHitbox() {
+    const size = (this.radius - CONFIG.BIRD_HITBOX_INSET) * 2;
+    return new Circle(this.pos.x, this.pos.y, size);
+  }
+
+  _checkCollisions() {
+    const hitbox = this.getHitbox();
+    if (hitbox.intersectsRect(floor.getHitbox())) {
+      endGame();
+      return;
     }
-
-    for (const tubo of tubos) {
-      const colisiones = tubo.areaColision();
-      for (const c of colisiones) {
-        if (this.areaColision().collideRect(c)) {
-          perder();
+    for (const pipe of state.pipes) {
+      for (const box of pipe.getHitboxes()) {
+        if (hitbox.intersectsRect(box)) {
+          endGame();
+          return;
         }
       }
     }
-  };
-
-  this.areaColision = function () {
-    return new Circle(this.pos.x, this.pos.y, this.r - 15);
-  };
+  }
 }

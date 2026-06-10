@@ -1,36 +1,32 @@
-/**
- * Tubo obstáculo con colisión rectangular.
- */
-function Tubo() {
-  const distanciaEntreTubos = CONFIG.DISTANCIA_ENTRE_TUBOS;
+/** Obstacle pair: bottom pipe + flipped top pipe. */
+class Pipe {
+  constructor() {
+    this.width = CONFIG.PIPE_WIDTH;
+    this.height = CONFIG.PIPE_HEIGHT;
+    this.x = width;
+    const gapCenter = height / 2 + random(-150, 150);
+    this.bottomY = gapCenter;
+    this.topY = gapCenter - this.height - CONFIG.PIPE_GAP;
+    assets.pipe.resize(this.width, assets.pipe.height * this.width / assets.pipe.width);
+  }
 
-  this.w = 100;
-  this.h = 600;
-  this.x = width;
-  const aleatoriedad = 300 * Math.random() - 150;
-  this.y = (height / 2) + aleatoriedad;
-  this.y2 = this.y - this.h - distanciaEntreTubos;
-
-  img_tubo.resize(this.w, img_tubo.height * this.w / img_tubo.width);
-
-  this.dibujar = function () {
-    image(img_tubo, this.x, this.y);
-
+  render() {
+    image(assets.pipe, this.x, this.bottomY);
     push();
-    translate(this.x, this.y - distanciaEntreTubos);
+    translate(this.x, this.bottomY - CONFIG.PIPE_GAP);
     scale(1, -1);
-    image(img_tubo, 0, 0);
+    image(assets.pipe, 0, 0);
     pop();
 
-    if (caer) {
-      this.x -= velocidad_suelo;
+    if (state.playing) {
+      this.x -= CONFIG.SCROLL_SPEED;
     }
-  };
+  }
 
-  this.areaColision = function () {
+  getHitboxes() {
     return [
-      new Rectangle(this.x, this.y, this.w, this.h),
-      new Rectangle(this.x, this.y2, this.w, this.h),
+      new Rectangle(this.x, this.bottomY, this.width, this.height),
+      new Rectangle(this.x, this.topY, this.width, this.height),
     ];
-  };
+  }
 }
